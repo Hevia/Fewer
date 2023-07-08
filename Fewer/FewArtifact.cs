@@ -8,8 +8,8 @@ namespace FewArtifact
 {
     class FewArtifact : ArtifactBase
     {
-        public static string texArtifactCommandDisabled = "RoR2/Base/Command/texArtifactSwarmsDisabled.png";
-        public static string texArtifactCommandEnabled = "RoR2/Base/Command/texArtifactSwarmsEnabled.png";
+        public static string texArtifactCommandDisabled = "RoR2/Base/Command/texArtifactCommandDisabled.png";
+        public static string texArtifactCommandEnabled = "RoR2/Base/Command/texArtifactCommandEnabled.png";
 
         public override string ArtifactName => "Artifact of Few";
         public override string ArtifactLangTokenName => "ARTIFACT_OF_FEW";
@@ -37,12 +37,9 @@ namespace FewArtifact
         {
             if (DecreaseSpawnCap)
             {
-                self.creditMultiplier *= 1.25f;
-                self.expRewardCoefficient *= 0.8f;
-                self.goldRewardCoefficient *= 0.8f;
-                //Debug.Log("creditMultiplier = " + self.creditMultiplier);
-                //Debug.Log("expRewardCoefficient = " + self.expRewardCoefficient);
-                //Debug.Log("goldRewardCoefficient = " + self.goldRewardCoefficient);
+                //self.creditMultiplier *= 1.25f;
+                self.expRewardCoefficient *= 2f;
+                self.goldRewardCoefficient *= 2f;
             }
             orig(self);
         }
@@ -55,9 +52,20 @@ namespace FewArtifact
             {
                 if (DecreaseSpawnCap)
                 {
+                    //Log.Debug("Caps before decrease...");
+                    //Log.Debug("TeamIndex.Monster cap: " + TeamCatalog.GetTeamDef(TeamIndex.Monster).softCharacterLimit);
+                    //Log.Debug("TeamIndex.Void cap: " + TeamCatalog.GetTeamDef(TeamIndex.Void).softCharacterLimit);
+                    //Log.Debug("TeamIndex.Lunar cap: " + TeamCatalog.GetTeamDef(TeamIndex.Lunar).softCharacterLimit);
+                    
                     TeamCatalog.GetTeamDef(TeamIndex.Monster).softCharacterLimit = (int)(TeamCatalog.GetTeamDef(TeamIndex.Monster).softCharacterLimit/2);
                     TeamCatalog.GetTeamDef(TeamIndex.Void).softCharacterLimit = (int)(TeamCatalog.GetTeamDef(TeamIndex.Void).softCharacterLimit / 2);
                     TeamCatalog.GetTeamDef(TeamIndex.Lunar).softCharacterLimit = (int)(TeamCatalog.GetTeamDef(TeamIndex.Lunar).softCharacterLimit / 2);
+
+                    //Log.Debug("Caps after decrease...");
+                    //Log.Debug("TeamIndex.Monster cap: " + TeamCatalog.GetTeamDef(TeamIndex.Monster).softCharacterLimit);
+                    //Log.Debug("TeamIndex.Void cap: " + TeamCatalog.GetTeamDef(TeamIndex.Void).softCharacterLimit);
+                    //Log.Debug("TeamIndex.Lunar cap: " + TeamCatalog.GetTeamDef(TeamIndex.Lunar).softCharacterLimit);
+
                     On.RoR2.CombatDirector.Awake += CombatDirector_Awake;
                 }
             }
