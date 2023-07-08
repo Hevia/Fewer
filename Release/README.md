@@ -13,6 +13,7 @@ You can file issues on discord in the #tech-support channel by @ing me (username
 - Add a 2nd artifact that operates similar to Few, but increases Elite and Variance spawn rates.
 - proper project deps
 - Better README
+- Better Thunderstore icon too...
 
 ## Credit
 - Thanks to swuff and HIFU for the idea to use Team catalog to reduce the overall monster cap.
