@@ -3,26 +3,22 @@ using UnityEngine;
 using UnityEngine.Networking;
 using RoR2;
 using UnityEngine.AddressableAssets;
-using System;
 
 namespace FewArtifact
 {
     class FewArtifact : ArtifactBase
     {
-        public static string texArtifactCommandDisabled = "RoR2/Base/Command/texArtifactCommandDisabled.png";
-        public static string texArtifactCommandEnabled = "RoR2/Base/Command/texArtifactCommandEnabled.png";
-        private bool inSpawn;
+        public static string texArtifactCommandDisabled = "RoR2/Base/Command/texArtifactSwarmsDisabled.png";
+        public static string texArtifactCommandEnabled = "RoR2/Base/Command/texArtifactSwarmsEnabled.png";
 
         public override string ArtifactName => "Artifact of Few";
         public override string ArtifactLangTokenName => "ARTIFACT_OF_FEW";
-        public override string ArtifactDescription => "Spawn rates are halved.";
+        public override string ArtifactDescription => "Monster team sizes are halved.";
         public override Sprite ArtifactEnabledIcon => Addressables.LoadAssetAsync<Sprite>(texArtifactCommandEnabled).WaitForCompletion();
         public override Sprite ArtifactDisabledIcon => Addressables.LoadAssetAsync<Sprite>(texArtifactCommandDisabled).WaitForCompletion();
 
         private static int defMonsterCap;
         internal static bool DecreaseSpawnCap = true;
-
-        public Logger RGILogger { get; private set; }
 
         public override void Init(ConfigFile config)
         {
@@ -57,9 +53,6 @@ namespace FewArtifact
 
             if (NetworkServer.active && ArtifactEnabled)
             {
-                foreach (CharacterMaster cm in run.userMasters.Values)
-                    cm.inventory.GiveItem(RoR2Content.Items.MonsoonPlayerHelper.itemIndex);
-
                 if (DecreaseSpawnCap)
                 {
                     TeamCatalog.GetTeamDef(TeamIndex.Monster).softCharacterLimit = (int)(TeamCatalog.GetTeamDef(TeamIndex.Monster).softCharacterLimit/2);
