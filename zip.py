@@ -15,6 +15,6 @@ def zip_files(file_paths, zip_name):
 
 # Example usage
 folder_paths = ['plugins', 'icon.png', 'manifest.json', 'README.md']  # List of folder paths to be zipped
-zip_name = 'FewArtifact.zip'  # Name of the zip file to be created
+zip_name = 'Artifact of Few.zip'  # Name of the zip file to be created
 
 zip_files(folder_paths, zip_name)

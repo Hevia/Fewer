@@ -1,8 +1,8 @@
 {
-    "name": "Artifact of Few",
+    "name": "Artifact_of_Few",
     "version_number": "1.0.0",
     "website_url": "https://github.com/Hevia/Fewer",
-    "description": "An Artifact to reduce overall monsters in play.",
+    "description": "An Artifact to reduce overall monsters in play. Useful for low-end PCs with huge mod lists!",
     "dependencies": [
         "RiskofThunder-RoR2BepInExPack-1.10.0",
         "RiskofThunder-FixPluginTypesSerialization-1.0.3",
